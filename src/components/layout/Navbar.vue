@@ -5,7 +5,7 @@
     tile
   >
     <v-toolbar>
-      <v-app-bar-nav-icon @click="drawer"></v-app-bar-nav-icon>
+
         <v-spacer></v-spacer>
       <v-toolbar-title>
           

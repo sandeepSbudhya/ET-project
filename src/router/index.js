@@ -12,17 +12,26 @@ const routes = [
   {
     path: '/',
     name: 'welcome',
-    component: welcome
+    component: welcome,
+    meta: {
+      requiresAuth: false,
+      title: 'Welcome'
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: login
+    component: login,
+    meta: {
+      requiresAuth: false,
+      title: 'Login'
+    }
   },
   {
     path: '/signup',
     name: 'signup',
-    component: signup
+    component: signup,
+    title: 'Signup'
   },
   {
     path: '/home',
@@ -41,6 +50,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || ('Your Website Title');
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
 
   if (requiresAuth && !auth.currentUser) {
