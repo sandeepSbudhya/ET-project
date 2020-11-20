@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/welcome',
     name: 'welcome',
     component: welcome,
     meta: {
@@ -37,8 +37,10 @@ const routes = [
     path: '/home',
     name: 'home',
     component: HomePage,
+    props:true,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      title:'home'
     }
   },
 ]

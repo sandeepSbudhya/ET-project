@@ -1,78 +1,71 @@
 <template>
-  <v-card
-    color="grey lighten-4"
-    flat
-    tile
-  >
+  <v-card color="grey lighten-4" flat tile>
     <v-toolbar>
-
-        <v-spacer></v-spacer>
       <v-toolbar-title>
-          
-          <v-btn
-          text
-          router-link :to="{name:'welcome'}">
-              Home
-          </v-btn>
+        <v-btn text router-link :to="{ name: 'welcome' }"> Content Blog </v-btn>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
       <v-btn
-       class="mx-2"
-       fab
-       outlined
-       dark
-       color="teal"
-       router-link :to="{name:'login'}">
-        <v-icon>
-          mdi-login
-        </v-icon>
+        v-if="loginStatus == false"
+        class="mx-2"
+        fab
+        outlined
+        dark
+        color="teal"
+        router-link
+        :to="{ name: 'login' }"
+      >
+        <v-icon> mdi-login </v-icon>
       </v-btn>
-      <span>Login</span>
+      <span  v-if="loginStatus == false">Login</span>
       <v-spacer></v-spacer>
 
       <v-btn
-       class="mx-2"
-       fab
-       outlined
-       dark
-       color="teal"
-       router-link :to="{name:'signup'}">
+        v-if="loginStatus == false"
+        class="mx-2"
+        fab
+        outlined
+        dark
+        color="teal"
+        router-link
+        :to="{ name: 'signup' }"
+      >
         <v-icon>mdi-account</v-icon>
       </v-btn>
-      <span>Signup</span>
-
+      <span  v-if="loginStatus == false">Signup</span>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-       class="mx-2"
-       fab
-       outlined
-       dark
-       color="red"
-       @click="logout">
+      <v-btn class="mx-2" fab outlined dark color="red" @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
       <span>Logout</span>
-
     </v-toolbar>
   </v-card>
 </template>
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
+
 export default {
-  name:'navbar',
-  methods:{
-    logout(){
-      firebase.auth().signOut().then(()=>{
-        this.$router.push({name:'welcome'})
-      })
+  data: () => ({}),
+  name: "navbar",
+  props: {
+    loginStatus: {
+      type: Boolean,
+      required: true,
     },
-    drawer(){
-      this.$emit('toggle-drawer')
-    }
-  }
-}
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "welcome" });
+        });
+    },
+  },
+};
 </script>

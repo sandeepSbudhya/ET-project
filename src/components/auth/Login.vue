@@ -63,9 +63,10 @@ export default {
               .where("user_id", "==", cred.user.uid)
               .get()
               .then((snapshot) => {
-                snapshot.forEach(() => {
+                snapshot.forEach((doc) => {
                   this.$router.push({
                     name: "home",
+                    params: { 'username':doc.data().username }
                   });
                 });
               });
