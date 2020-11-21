@@ -2,7 +2,7 @@
   <v-card color="grey lighten-4" flat tile>
     <v-toolbar>
       <v-toolbar-title>
-        <v-btn text router-link :to="{ name: 'welcome' }"> Content Blog </v-btn>
+        <v-btn text router-link :to="{ name: 'welcome' }">  </v-btn>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
