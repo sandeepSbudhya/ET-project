@@ -43,6 +43,7 @@ const routes = [
       title:'home'
     }
   },
+  
 ]
 
 const router = new VueRouter({

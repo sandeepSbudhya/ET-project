@@ -47,10 +47,16 @@
     <v-card tile flat v-if="group == 2">
 
     </v-card>
+    <v-card tile flat v-if="group == 3" >
+      <v-container>
+        <h1>Pick a file</h1>
+        <v-file-input @change="onUpload" accept="image/*">P</v-file-input>   
+      </v-container>
+    </v-card>
   </v-card>
 </template>
 <script>
-
+import firebase from "firebase"
 
 export default {
   name: "HomePage",
@@ -70,8 +76,17 @@ export default {
       { title: "Dashboard", icon: "mdi-view-dashboard" },
       { title: "Profile", icon: "mdi-image" },
       { title: "Create New", icon: "mdi-help-box" },
+      { title: "Upload Document", icon: "mdi-upload" }
     ],
+    fileData:null,
   }),
+  methods:{
+onUpload(){
+  this.fileData = event.target.files[0];
+  firebase.storage().ref(`${this.fileData.name}`).put(this.fileData).then(
+  alert('Succesfully uploaded'));
+ },
+  },
   watch: {
     group() {
       this.drawer = false;
